@@ -11,3 +11,8 @@ venv/
 
 # Environment variables
 .env
+
+data/
+outputs/
+.vscode/
+
