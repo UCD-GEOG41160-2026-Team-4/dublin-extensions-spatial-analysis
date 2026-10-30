@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 26 13:49:01 2026
-
-@author: faydonnelly
-"""
-
-
 
 """
 GEOG41160 Assignment 2 Team 4
