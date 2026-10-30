@@ -67,5 +67,11 @@ Visualized extension density By ED using a chropleth map.
 **Next Steps:** Complete Q2.Global spatial autocorrelation in Sprint 2 and Q3.Local clusters and hotspots in Sprint 3.
 
 ## Sprint 2
+**Date:** 29 - 30th October 2026
 
+**Completed:**
+Completed Question 2 (Global Spatial Autocorrelation) using Python. Examined the distribution of building extension density using a histogram and skewness calculations. Tested log and square-root transformations, with the square-root transformation reducing skewness from 1.391 to 0.354. Created Queen contiguity spatial weights for
+the 162 Electoral Divisions and calculated Global Moran's I using 9,999 permutations and a fixed random seed of 42. Results showed statistically significant positive spatial autocorrelation, indicating clustering of similar extension-density values across Dublin City. Saved the Python script and histogram in the repository.
+
+**Next Steps:** Complete Q3 (Local Clusters and Hotspots) in Sprint 3.
 ## Sprint 3
