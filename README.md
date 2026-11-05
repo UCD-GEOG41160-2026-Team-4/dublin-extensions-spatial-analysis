@@ -53,7 +53,8 @@ Run `scripts/Q3_LISA_GiStar.py` to identify local clusters , hotspots and coldsp
 ## Sprint 0
 **Date:** 25 October 2026
 
-**Completed:** Initial repository setup, folder structure, `.gitignore`, and README.md.
+**Completed:** 
+Created the GitHub organization and set up the project repository “dublin-extensions-spatial-analysis” for team 4. Defined the folder structure of the repository as follows: data, scripts, and outputs folders. Used the .gitkeep files to keep the empty folders intact. Created the first README.md file for the overview of the project, data sources, coordinate reference system, workflow, and sprint log.
 
 ## Sprint 1
 **Date:** 26 October 2026 - 28 October 2026
@@ -74,4 +75,10 @@ Completed Question 2 (Global Spatial Autocorrelation) using Python. Examined the
 the 162 Electoral Divisions and calculated Global Moran's I using 9,999 permutations and a fixed random seed of 42. Results showed statistically significant positive spatial autocorrelation, indicating clustering of similar extension-density values across Dublin City. Saved the Python script and histogram in the repository.
 
 **Next Steps:** Complete Q3 (Local Clusters and Hotspots) in Sprint 3.
+
 ## Sprint 3
+Completed Q3.1–Q3.3 (Local Clusters and Hotspots) using Python. Performed Local Moran’s I (LISA) on the 162 Electoral Divisions using Queen weights and 9,999 random permutations. Used the Benjamini-Hochberg False Discovery Rate (FDR) method to adjust for multiple comparisons and hence the number of significant EDs was reduced to 22.
+
+Generated the LISA cluster map based on the FDR-corrected results. There were 10 High-High clusters, 10 Low-Low clusters and 2 Low-High spatial outliers found in the data. The rest of the 140 EDs were non-significant after adjustment. Saved the Python code and LISA map in the repository.
+
+**Next Steps:** Complete Q3.3-Q3.6 (Local Clusters and Hotspots) in Sprint 4.
