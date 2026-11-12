@@ -138,3 +138,8 @@ map_file = OUTPUTS/"LISA_ExtensionDensity_DublinED.png"
 plt.savefig(map_file, dpi=300, bbox_inches="tight")
 plt.show()
 print("LISA map saved to:", map_file)
+
+# Export LISA results for Q3.6 comparison
+output_file = OUTPUTS / "DublinED_LISA_Results.gpkg"
+eds.to_file(output_file,driver="GPKG")
+print("LISA results saved:",output_file)
