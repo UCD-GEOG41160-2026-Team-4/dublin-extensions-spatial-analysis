@@ -160,5 +160,55 @@ eds.to_file(
 print("Gi* results saved:", output_file)
 
 
-# Display map
+# show map
 plt.show()
+
+
+
+# Q3.6 - Compare LISA and Getis-Ord Gi*
+
+# Load LISA results
+lisa_file = OUTPUTS / "DublinED_LISA_Results.gpkg"
+lisa = gpd.read_file(lisa_file)
+
+# Match LISA and Gi* results by ED name
+comparison = eds[["ED_ENGLISH", "Gi_class"]].merge(
+    lisa[["ED_ENGLISH", "LISA_cluster"]],
+    on="ED_ENGLISH",
+    how="inner",
+    validate="one_to_one"
+)
+
+print("\nQ3.6 - LISA and Gi* comparison")
+print("Number of matched EDs:", len(comparison))
+
+# Check all 162 EDs are included
+assert len(comparison) == len(eds), "Some EDs did not match"
+
+# Compare cluster classifications
+comparison_table = comparison.groupby(
+    ["LISA_cluster", "Gi_class"]
+).size().unstack(fill_value=0)
+
+print("\nComparison table:")
+print(comparison_table)
+
+# Count agreement between methods
+hh_hotspots = (
+    (comparison["LISA_cluster"] == "High-High") &
+    (comparison["Gi_class"] == "Hotspot")
+).sum()
+
+ll_coldspots = (
+    (comparison["LISA_cluster"] == "Low-Low") &
+    (comparison["Gi_class"] == "Coldspot")
+).sum()
+
+print("\nHigh-High EDs also identified as hotspots:", hh_hotspots)
+print("Low-Low EDs also identified as coldspots:", ll_coldspots)
+
+# Save comparison table
+comparison_file = OUTPUTS / "Q3_LISA_GiStar_Comparison.csv"
+comparison_table.to_csv(comparison_file)
+
+print("\nComparison saved:", comparison_file)
