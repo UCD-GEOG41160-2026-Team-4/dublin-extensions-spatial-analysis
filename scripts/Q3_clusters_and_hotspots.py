@@ -54,6 +54,8 @@ import matplotlib.pyplot as plt
 from libpysal.weights import Queen
 from esda.moran import Moran_Local
 from esda import fdr
+from matplotlib.patches import Patch
+from esda.getisord import G_Local
 
 ROOT=Path(__file__).resolve().parents[1]
 OUTPUTS=ROOT / "outputs"
@@ -138,3 +140,136 @@ map_file = OUTPUTS/"LISA_ExtensionDensity_DublinED.png"
 plt.savefig(map_file, dpi=300, bbox_inches="tight")
 plt.show()
 print("LISA map saved to:", map_file)
+
+
+# Q3.4 - Getis-Ord Gi* analysis
+
+# Calculate Gi* using binary Queen contiguity weights
+gi_weights = Queen.from_dataframe(eds, use_index=False)
+
+gi_star = G_Local(
+    eds["sqrt_extension_density"].to_numpy(),
+    gi_weights,
+    transform="B",
+    star=True,
+    permutations=PERMUTATIONS,
+    seed=SEED,
+    n_jobs=1
+)
+
+# Store Z-scores and two-sided analytical p-values
+eds["Gi_Z"] = gi_star.Zs
+eds["Gi_p"] = np.minimum(gi_star.p_norm * 2, 1.0)
+
+print("\nQ3.4 - Getis-Ord Gi* results:")
+print(eds[["Gi_Z", "Gi_p"]].describe())
+
+# Apply FDR correction
+gi_fdr_threshold = fdr(
+    eds["Gi_p"].to_numpy(),
+    alpha=0.05
+)
+
+eds["Gi_significant"] = eds["Gi_p"] <= gi_fdr_threshold
+
+# Classify hotspots and coldspots
+eds["Gi_class"] = "Not Significant"
+
+eds.loc[
+    (eds["Gi_Z"] > 1.96) & (eds["Gi_significant"]),
+    "Gi_class"
+] = "Hotspot"
+
+eds.loc[
+    (eds["Gi_Z"] < -1.96) & (eds["Gi_significant"]),
+    "Gi_class"
+] = "Coldspot"
+
+print("\nGi* FDR threshold:", gi_fdr_threshold)
+print("\nGi* classification:")
+print(eds["Gi_class"].value_counts())
+
+
+# Q3.5 - Map Gi* hotspots and coldspots
+
+colors = {
+    "Hotspot": "#d73027",
+    "Coldspot": "#4575b4",
+    "Not Significant": "#d9d9d9"
+}
+
+fig, ax = plt.subplots(figsize=(10, 10))
+
+for category, color in colors.items():
+    eds[eds["Gi_class"] == category].plot(
+        ax=ax,
+        color=color,
+        edgecolor="white",
+        linewidth=0.3
+    )
+
+ax.set_title(
+    "Getis-Ord Gi* Hotspots of Extension Density\n"
+    "Dublin Electoral Divisions (FDR corrected)",
+    fontsize=13,
+    pad=20
+)
+
+legend_elements = [
+    Patch(facecolor=color, label=category)
+    for category, color in colors.items()
+]
+
+ax.legend(handles=legend_elements, loc="lower left")
+ax.set_axis_off()
+plt.tight_layout()
+
+# Save Gi* map
+gi_map_file = OUTPUTS / "GiStar_ExtensionDensity_DublinED.png"
+plt.savefig(gi_map_file, dpi=300, bbox_inches="tight")
+
+print("\nGi* map saved:", gi_map_file)
+
+# Export Gi* results
+gi_output_file = OUTPUTS / "DublinED_GiStar_Results.gpkg"
+
+eds.to_file(
+    gi_output_file,
+    layer="GiStar_Results",
+    driver="GPKG"
+)
+
+print("Gi* results saved:", gi_output_file)
+
+
+# Q3.6 - Compare LISA and Getis-Ord Gi*
+
+# Both classifications are now stored in the same dataset
+comparison_table = eds.groupby(
+    ["LISA_cluster", "Gi_class"]
+).size().unstack(fill_value=0)
+
+print("\nQ3.6 - LISA and Gi* comparison:")
+print(comparison_table)
+
+# Count agreement between methods
+hh_hotspots = (
+    (eds["LISA_cluster"] == "High-High") &
+    (eds["Gi_class"] == "Hotspot")
+).sum()
+
+ll_coldspots = (
+    (eds["LISA_cluster"] == "Low-Low") &
+    (eds["Gi_class"] == "Coldspot")
+).sum()
+
+print("\nHigh-High EDs also identified as hotspots:", hh_hotspots)
+print("Low-Low EDs also identified as coldspots:", ll_coldspots)
+
+# Save comparison table
+comparison_file = OUTPUTS / "Q3_LISA_GiStar_Comparison.csv"
+comparison_table.to_csv(comparison_file)
+
+print("\nComparison saved:", comparison_file)
+
+plt.show()
