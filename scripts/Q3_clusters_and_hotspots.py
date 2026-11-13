@@ -38,7 +38,7 @@ High-Low:0
 Not significant:140
 Total:162
 
-There are 10 clusters of EDs with both high extension density and another 10 clusters with low extension density. Out of 163 EDs in Dublin City, 140 were found to not have a statistically significant spatial correlation. The remaining 23 EDs (around 14%) include 10 High-High clusters, 10 Low-Low clusters, 2 Low-High outliers, and no High-Low outliers.
+There are 10 clusters of EDs with both high extension density and another 10 clusters with low extension density. Out of 162 EDs in Dublin City, 140 were found to not have a statistically significant spatial correlation. The remaining 22 EDs (around 14%) include 10 High-High clusters, 10 Low-Low clusters, 2 Low-High outliers, and no High-Low outliers.
 
 Q4-Getis-Ord Gi*
 Q5-FDR correction
