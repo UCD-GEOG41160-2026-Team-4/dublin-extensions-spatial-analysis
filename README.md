@@ -82,29 +82,29 @@ Completed Q3.1–Q3.3 (Local Clusters and Hotspots) using Python. Performed Loca
 Generated the LISA cluster map based on the FDR-corrected results. There were 10 High-High clusters, 10 Low-Low clusters and 2 Low-High spatial outliers found in the data. The rest of the 140 EDs were non-significant after adjustment. Saved the Python code and LISA map in the repository.
 
 ## Sprint 4
-completed question 3.4-3.6
+Completed Question 3.4-3.6
 
 Question 3.4 
-Getis-Ord Gi* was calculated to identify statistically significant hotspots and coldspots of extension application density across the 162 Dublin electoral divisions. The analysis used square-root-transformed extension density, Queen contiguity spatital weights, 9,999 permutations and a fixed seed of 42.
+Getis-Ord Gi* was calculated to identify statistically significant hotspots and coldspots of extension application density across the 162 Dublin electoral divisions. The analysis used square-root-transformed extension density, Queen contiguity spatial weights, 9,999 permutations and a fixed seed of 42.
 
-hotspots were identified using z-scores >1.96, while coldspots were identified using z-scores <1.96. 2-sided analytical p-values were calculated and a False Discovery Rate (FDR) correction was applied at alpha = 0.05.
+Hotspots were identified using z-scores >1.96, while coldspots were identified using z-scores <-1.96. 2-sided analytical p-values were calculated and a False Discovery Rate (FDR) correction was applied at alpha = 0.05.
 
-After FDR correction, 6 ED's were classfied as hotspots, 5 as coldspots and 151 as not significant. The FDR significance threshold was 0.003395.
+After FDR correction, 6 ED's were classified as hotspots, 5 as coldspots and 151 as not significant. The FDR significance threshold was 0.003395.
 
 
 Question 3.5 
 The Gi* results were mapped using a diverging color scheme, with red representing hotspots, blue representing coldspots and grey representing non-significant ED's. 
 
-The map shows that significant hotspots are mainly concentrated in southern Dublin, while coldpspots are located prpimarily in western Dublin, with one additional coldspot in North Dublin.
+The map shows that significant hotspots are mainly concentrated in southern Dublin, while coldspots are located primarily in western Dublin, with one additional coldspot in North Dublin.
 
-The map was saved as outputs/GiStar_ExtensionDensity_Dublin_ED.png 
+The map was saved as outputs/GiStar_ExtensionDensity_DublinED.png 
 
 The spatial results were also exported to outputs/DublinED_GiStar_Results.gpkg.
 
 Question 3.6
-Both LISA and Gi* identiffied statistically significant spataial patterns of extension density across Dublin. After FDR correction, LISA identified 22 significant ED's, compared to 11 using Gi*.
+Both LISA and Gi* identified statistically significant spatial patterns of extension density across Dublin. After FDR correction, LISA identified 22 significant ED's, compared to 11 using Gi*.
 
-Of the 6 Gi* hotspots, 5 were also classified as high-high clusters by LISA. Similarily 4 of 5 Gi* coldspots were classified as low-low clusters. Overall 9 of the 11 significant Gi* ED's were also identified as corresponding significant clusters by LISA
+Of the 6 Gi* hotspots, 5 were also classified as high-high clusters by LISA. Similarly 4 of 5 Gi* coldspots were classified as low-low clusters. Overall 9 of the 11 significant Gi* ED's were also identified as corresponding significant clusters by LISA
 
 The two methods therefore mostly agree on the location of the strongest clusters, although LISA identified more significant EDs. This difference can be explained by the methods measuring different aspects of spatial clustering. LISA identifies both clusters and spatial outliers. Gi* focuses on concentrations of high and low values. Differences in significance testing may also contribute to the results, as LISA used permutation-based p-values while GI* uses analytical p-values. 
 
