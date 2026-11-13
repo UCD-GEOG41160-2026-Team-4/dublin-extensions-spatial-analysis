@@ -93,6 +93,8 @@ After FDR correction, 6 ED's were classified as hotspots, 5 as coldspots and 151
 
 
 Question 3.5 
+
+
 The Gi* results were mapped using a diverging color scheme, with red representing hotspots, blue representing coldspots and grey representing non-significant ED's. 
 
 The map shows that significant hotspots are mainly concentrated in southern Dublin, while coldspots are located primarily in western Dublin, with one additional coldspot in North Dublin.
