@@ -85,6 +85,7 @@ Generated the LISA cluster map based on the FDR-corrected results. There were 10
 completed question 3.4-3.6
 
 Question 3.4 
+
 Getis-Ord Gi* was calculated to identify statistically significant hotspots and coldspots of extension application density across the 162 Dublin electoral divisions. The analysis used square-root-transformed extension density, Queen contiguity spatital weights, 9,999 permutations and a fixed seed of 42.
 
 hotspots were identified using z-scores >1.96, while coldspots were identified using z-scores <1.96. 2-sided analytical p-values were calculated and a False Discovery Rate (FDR) correction was applied at alpha = 0.05.
@@ -93,6 +94,8 @@ After FDR correction, 6 ED's were classfied as hotspots, 5 as coldspots and 151 
 
 
 Question 3.5 
+
+
 The Gi* results were mapped using a diverging color scheme, with red representing hotspots, blue representing coldspots and grey representing non-significant ED's. 
 
 The map shows that significant hotspots are mainly concentrated in southern Dublin, while coldpspots are located prpimarily in western Dublin, with one additional coldspot in North Dublin.
@@ -102,6 +105,8 @@ The map was saved as outputs/GiStar_ExtensionDensity_Dublin_ED.png
 The spatial results were also exported to outputs/DublinED_GiStar_Results.gpkg.
 
 Question 3.6
+
+
 Both LISA and Gi* identiffied statistically significant spataial patterns of extension density across Dublin. After FDR correction, LISA identified 22 significant ED's, compared to 11 using Gi*.
 
 Of the 6 Gi* hotspots, 5 were also classified as high-high clusters by LISA. Similarily 4 of 5 Gi* coldspots were classified as low-low clusters. Overall 9 of the 11 significant Gi* ED's were also identified as corresponding significant clusters by LISA
