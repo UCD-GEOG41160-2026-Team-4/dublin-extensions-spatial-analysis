@@ -34,12 +34,7 @@ Question 2: Global Spatial Autocorrelation
    reduced skewness most effectively, although Moran's I increased
    slightly after transformation.
 
-Note: A permutation p-value of 0.0001 is the minimum attainable
-pseudo p-value with 9,999 permutations and should not be interpreted
-as the probability that the observed pattern is due to chance.
 """
-
-
 # Import tools for working with file paths
 from pathlib import Path
 
@@ -53,7 +48,6 @@ DENSITY_FILE = PROJECT_DIR / "outputs" / "DublinED_ExtensionDensity.gpkg"
 print("Project folder:", PROJECT_DIR)
 print("Density file:", DENSITY_FILE)
 print("Does the density file exist?", DENSITY_FILE.exists())
-
 
 # Check the packages are installed
 import importlib.util
