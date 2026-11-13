@@ -13,6 +13,6 @@ venv/
 .env
 
 data/
-outputs/
+
 .vscode/
 
