@@ -46,7 +46,7 @@ Q2. Global spatial autocorrelation
 Run `scripts/Q2_GlobalMoran.py` to assess global spatial autocorrelation in extension density.
 
 Q3. Local clusters and hotspots
-Run `scripts/Q3_LISA_GiStar.py` to identify local clusters , hotspots and coldspots. 
+Run `scripts/Q3_clusters_and_hotspots.py` to identify local clusters , hotspots and coldspots. 
 
 ## Sprint Log
 
