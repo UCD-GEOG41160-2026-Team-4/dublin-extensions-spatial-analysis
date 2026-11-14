@@ -63,7 +63,7 @@ Created the GitHub organization and set up the project repository “dublin-exte
 Downloaded the source datasets and filtered the planning applications for Dublin City extensions received between 2019 and 2025.
 Reprojected the application points layer to EPSG:2157 and performed spatial join with Electoral divisions layer. 
 Calculated extension density by ED and saved the result as a GeoPackage. 
-Visualized extension density By ED using a chropleth map.
+Visualized extension density by ED using a choropleth map.
 
 **Next Steps:** Complete Q2.Global spatial autocorrelation in Sprint 2 and Q3.Local clusters and hotspots in Sprint 3.
 
